@@ -1,3 +1,4 @@
+package CodingBatProblems;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.*;
@@ -11,7 +12,7 @@ public class Recursion1 {
         // System.out.println(factorial(4));
         // System.out.println(bunnyEars(32));
         // System.out.println(bunnyEars2(32));
-        // fibonacci(10);
+        System.out.println(fibonacci(10));
         // System.out.println(sumDigits(10110));
         // System.out.println(count7(7700));
         // System.out.println(count8(8888));
@@ -48,9 +49,9 @@ public class Recursion1 {
         //System.out.println(countHi2("xhixhi"));
 
 
-        int[] numsLeaders = {16, 17, 4, 3, 12, 11, 12, 5, 2};
-        List<Integer> leaders = findLeader(numsLeaders);
-        System.out.println(leaders.stream().collect(Collectors.toList()));
+        //int[] numsLeaders = {16, 17, 4, 3, 12, 11, 12, 5, 2};
+        //List<Integer> leaders = findLeader(numsLeaders);
+        //System.out.println(leaders.stream().collect(Collectors.toList()));
 
 
     }
@@ -309,23 +310,13 @@ public class Recursion1 {
 
     static int count = 10;
 
-    public static void fibonacci(int n) {
+    public static int fibonacci(int num) {
 
-        System.out.println(fab(count - n));
-        n--;
-        if (n > 0) {
-            fibonacci(n);
-        }
-    }
+        //Time Complexity = O([Number of Branches to the power] of [depth of a tree]) = O(2^n)
+        // Space Complexity = O(n)
+        // if num is 10 then the T.C = O(2 ^ 10), S.C = O(10)
 
-    public static int fab(int num) {
-
-        if (num <= 1) {
-            return num;
-        } else {
-            return fab(num - 1) + fab(num - 2);
-        }
-
+        return num <= 1 ? num : fibonacci(num -1) + fibonacci(num - 2);
     }
 
     public static int bunnyEars2(int bunnies) {
