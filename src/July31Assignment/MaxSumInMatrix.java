@@ -1,4 +1,4 @@
-package ClassworkAssignment;
+package July31Assignment;
 
 
 /**
