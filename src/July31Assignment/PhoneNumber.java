@@ -7,7 +7,7 @@ import java.util.Map;
  * Tawheed TIPS Summer 2021
  * July, 31, 2021 - Assignment
  * 
- * Wild-Card -
+ * Letter Combination of Phone Number-
  * https://classroom.google.com/c/MzcwMjU4Mzg4ODE0/a/Mzc0NTI2ODcwNzcw/details
  * 
  * @author Naseer Mohammed Abdul 
@@ -29,7 +29,7 @@ public class PhoneNumber {
     }
     
     public static void main(String[] args) {
-        int[] num = {2,3,5};
+        int[] num = {2,3};
         printCharForNumber(num, "", 0);
 
         int[] num1 = {};
