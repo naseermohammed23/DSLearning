@@ -32,6 +32,6 @@ jobs:
         run: | 
           ls -ltr
           cd src/${{ env.CLASS_PATH }}
-          javac ${{ env.CLASS_NAME }}+".java"
+          javac ${{ env.CLASS_NAME }}".java"
           java ${{ env.CLASS_NAME }}
 
