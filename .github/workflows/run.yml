@@ -5,14 +5,15 @@ on:
     # Inputs the workflow accepts.
     inputs:
       ClassPath:
-        description: 'Class Path'
+        description: 'Class Path' # please provide class path. eg: com/tawheed/assignment
         default: ''
         required: true
 
       ClassName:
-        description: 'Class Name'
+        description: 'Class Name' # please provide class name without extention.
         default: ''
         required: true
+        
 env:
   CLASS_PATH: ${{ github.event.inputs.ClassPath }}
   CLASS_NAME: ${{ github.event.inputs.ClassName }}
