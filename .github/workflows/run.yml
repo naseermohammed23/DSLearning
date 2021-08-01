@@ -31,7 +31,7 @@ jobs:
       - name: Compile & Run class ${{ env.CLASS_NAME }}
         run: | 
           ls -ltr
-          cd src\${{ env.CLASS_PATH }}
+          cd src/${{ env.CLASS_PATH }}
           javac ${{ env.CLASS_NAME }}+".java"
           java ${{ env.CLASS_NAME }}
 
