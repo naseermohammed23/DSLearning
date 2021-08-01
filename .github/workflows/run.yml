@@ -28,10 +28,10 @@ jobs:
           distribution: 'adopt' # See 'Supported distributions' for available options
           java-version: '11'
           
-      - name: Compile class ${{ env.CLASS_NAME }}
+      - name: Compile & Run class ${{ env.CLASS_NAME }}
         run: | 
           ls -ltr
-          javac -cp ${{ env.CLASS_PATH }} ${{ env.CLASS_NAME }}
-  
-      - name: Execute class ${{ env.CLASS_NAME }}
-        run: java -cp ${{ env.CLASS_PATH }} ${{ env.CLASS_NAME }}
+          cd src\${{ env.CLASS_PATH }}
+          javac ${{ env.CLASS_NAME }}+".java"
+          java ${{ env.CLASS_NAME }}
+
