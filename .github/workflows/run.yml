@@ -1,4 +1,4 @@
-name: AMPS UI - Generic CI Workflow
+name: Tawheed TIPS Learning
 
 on:
   workflow_dispatch:
