@@ -1,0 +1,31 @@
+name: AMPS UI - Generic CI Workflow
+
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      ClassPath:
+        description: 'Class Path'
+        default: ''
+        required: true
+
+      ClassName:
+        description: 'Class Name'
+        default: ''
+        required: true
+env:
+  CLASS_PATH: ${{ github.event.inputs.ClassPath }}
+  CLASS_NAME: ${{ github.event.inputs.ClassName }}
+
+jobs:
+  Run-Java-Program:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt' # See 'Supported distributions' for available options
+          java-version: '11'
+      - run: java -cp ${{ env.CLASS_PATH }} ${{ env.CLASS_NAME }}
+  
