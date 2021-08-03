@@ -7,9 +7,13 @@ import java.util.List;
 public class NQueen {
     
     public static void main(String[] args) {
-        List<String> result = NQueenProcess(4, new ArrayList<>(), 1, 0, 1);
+        int N = 4;
+
+        List<String> result = NQueenProcess(N, new ArrayList<>(), 1, 0, 1);
 
         System.out.println("Queens - " + result.toString());
+
+        drawBoard(N, result);
     }
 
 
@@ -17,10 +21,10 @@ public class NQueen {
     static List<String> NQueenProcess(int N, List<String> result, int queen, int row, int col) {
 
 
-        if (result.size() == N) {
+        /* if (result.size() == N) {
             System.out.println("All Queens are placed : " + result.toString());
             return result;
-        }
+        } */
 
         System.out.println("Placing Queen : " + queen);
 
@@ -149,5 +153,15 @@ public class NQueen {
         return temp;
     }
 
+
+    private static void drawBoard(int N, List<String> result) {
+
+        for (int i=0;i<N;i++) {
+            for (int j=0;j<N;j++) {
+                System.out.print(result.contains(i+","+j) ? "  Q  " : "  -  ");
+            }
+            System.out.println();
+        }
+    }
 
 }
