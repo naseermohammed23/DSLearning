@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 
 public class NQueen {
+
+    // This Example is currently working for Happy Path scenario's only. 
     
     public static void main(String[] args) {
         int N = 4;
@@ -58,7 +60,7 @@ public class NQueen {
                 }
            }
 
-           if (!isInLineOfAttack) {
+           if (!isInLineOfAttack && queen <= N) {
                return row + 1 < N ? NQueenProcess(N, result, queen+1, row+1, col) : result;
            } else {
             return NQueenProcess(N, result, queen, row, col);
