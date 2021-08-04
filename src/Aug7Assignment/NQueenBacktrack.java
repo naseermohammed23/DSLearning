@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Tawheed TIPS Summer 2021
- * July, 31, 2021 - Assignment
+ * Aug, 07, 2021 - Assignment
  * 
  * N-Queen Backtrack solution -
  * https://classroom.google.com/c/MzcwMjU4Mzg4ODE0/a/Mzc0NTI2ODcwNzMy/details
@@ -16,8 +16,14 @@ import java.util.List;
 public class NQueenBacktrack {
     
     public static void main(String[] args) {
+
+        // As per the assignment requirement to print the output of board size 1 through 10. 
+
         NQueenBacktrack queen = new NQueenBacktrack();
-        queen.solveQueens(new ArrayList<String>());
+
+        for (int i=1;i<=10;i++) {
+            queen.solveQueens(new ArrayList<String>(), i);
+        }        
     }
 
 
@@ -26,10 +32,9 @@ public class NQueenBacktrack {
      * 
      * @param board
      */
-    void solveQueens(List<String> board) {
-        int size = 4;
+    void solveQueens(List<String> board, int size) {
+        System.out.println("Solution for Board - "+ size + " x " + size);
         queensHelper(size, board, 0);
-
     }
 
     /**
