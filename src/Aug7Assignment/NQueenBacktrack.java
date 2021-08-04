@@ -85,12 +85,17 @@ public class NQueenBacktrack {
      * @param col
      * @return
      */
-    private static boolean isSafe(int size, List<String> board, int row, int col) {
-        List<String> lineOfAttackList = new ArrayList<>();
-           for (int i=board.size()-1;i>=0;i--) {
-                lineOfAttackList.addAll(getLineOfAttackList(size, board.get(i)));
-           }
-        return !lineOfAttackList.contains(row+","+col);
+    private boolean isSafe(int size, List<String> board, int row, int col) {
+        boolean isLineOfAttack = false;
+        
+        for (int i=board.size()-1;i>=0;i--) {
+            isLineOfAttack = getLineOfAttackList(size, board.get(i), row+","+col);
+            if (isLineOfAttack) {
+                break;
+            }
+        }
+
+        return !isLineOfAttack;
     }
 
     /**
@@ -99,81 +104,91 @@ public class NQueenBacktrack {
      * @param str
      * @return
      */
-    private static HashSet<String> getLineOfAttackList(int size, String str) {
-        HashSet<String> temp = new HashSet<>();
+    private boolean getLineOfAttackList(int size, String str, String key) {
+        
+        boolean isLineOfAttack = false;
+
         String[] str1 = str.split(",");
         int row = Integer.parseInt(str1[0]);
         int col = Integer.parseInt(str1[1]);
 
+        
+
         // Add all row 
-        for (int i=0; i<size; i++){
-            temp.add(row+","+i);
+        for (int i=0; i<size && !isLineOfAttack; i++){
+            isLineOfAttack = isKeyMatching((row+","+i),key);
         }
 
         // Add all col 
-        for (int i=0; i<size; i++){
-            temp.add(i+","+col);
+        for (int i=0; i<size && !isLineOfAttack; i++){
+            isLineOfAttack = isKeyMatching((i+","+col),key);
         }
 
         
         // Add all diagnols // Up -Left 
         int r = row, c = col;
-        while (true) {
+        while (!isLineOfAttack) {
             if (r == 0 && c == 0) {
-                temp.add(r+","+c);
+                isLineOfAttack = isKeyMatching((r+","+c),key);
                 break;
             } else if (r == 0 && c >= 0) {
-                temp.add(r + "," + c--);
+                isLineOfAttack = isKeyMatching((r + "," + c--),key);
                 break;
             } else if (r >= 0 && c == 0) {
-                temp.add(r-- + "," + c);
+                isLineOfAttack = isKeyMatching((r-- + "," + c),key);
                 break;
             } else {
-                temp.add(r-- + "," + c--);
+                isLineOfAttack = isKeyMatching((r-- + "," + c--),key);
             }
         }
 
         // Add all diagnols // down - right
         r = row;
         c = col;
-        while (true) {
+        while (!isLineOfAttack) {
             if (r == size-1 || c == size-1) {
-                temp.add(r+","+c);
+                isLineOfAttack = isKeyMatching((r+","+c),key);
                 break;
-            } else if (r == 0 && c >0) {
-                temp.add(r++ + "," + c++);
-            } else if (r > 0 && c == 0) {
-                temp.add(r++ + "," + c++);
             } else {
-                temp.add(r++ + "," + c++);
+                isLineOfAttack = isKeyMatching((r++ + "," + c++),key);
             }
         }
 
         r = row;
         c = col;
         // Add all diagnols // Up - right 
-        while (true) {
+        while (!isLineOfAttack) {
             if (r == 0 || c == size-1) {
-                temp.add(r+","+c);
+                isLineOfAttack = isKeyMatching((r+","+c),key);
                 break;
             } else if (r >= 0 && c <= size) {
-                temp.add(r-- + "," + c++);
+                isLineOfAttack = isKeyMatching((r-- + "," + c++),key);
             }
         }
 
         // Add all diagnols // down -Left 
         r = row;
         c = col;
-        while (true) {
+        while (!isLineOfAttack) {
             if (r == size-1 || c == 0) {
-                temp.add(r+","+c);
+                isLineOfAttack = isKeyMatching((r+","+c),key);
                 break;
             } else if (r <= size-1 && c >=0) {
-                temp.add(r++ + "," + c--);
+                isLineOfAttack = isKeyMatching((r++ + "," + c--),key);
             } 
         }
 
-        return temp;
+        return isLineOfAttack;
+    }
+
+    /**
+     * 
+     * @param str
+     * @param key
+     * @return
+     */
+    boolean isKeyMatching(String str, String key) {
+        return str.equals(key);
     }
 
 
@@ -182,7 +197,7 @@ public class NQueenBacktrack {
      * @param size - size of the board. 
      * @param result - list of coordinates of the queens on the board. 
      */
-    private static void drawBoard(int size, List<String> result) {
+    private void drawBoard(int size, List<String> result) {
         System.out.println("=======================================");
         for (int i=0;i<size;i++) {
             for (int j=0;j<size;j++) {
