@@ -43,6 +43,9 @@ public class NQueenBacktrack {
      * @param board - Board of given size. 
      * @param col - columns to traverse on the board. 
      * @return true if found the solution. 
+     * 
+     * Note:- if need to return all the solution of the given board of size, then dont return boolean just return void. 
+     * make the code changes in the subseequent methods also. 
      */
     boolean queensHelper(int size, List<String> board, int col) {
 
