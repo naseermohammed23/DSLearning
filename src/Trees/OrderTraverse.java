@@ -3,6 +3,15 @@ package Trees;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Tawheed TIPS Summer 2021
+ * Aug, 07, 2021 - Assignment
+ * 
+ * Tree Traversal -
+ * https://classroom.google.com/c/MzcwMjU4Mzg4ODE0/a/Mzc1Njc3MTYzNDU4/details
+ * 
+ * @author Naseer Mohammed Abdul 
+ */
 public class OrderTraverse {
 
     /**
