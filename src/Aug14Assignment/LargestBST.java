@@ -1,5 +1,14 @@
 package Aug14Assignment;
 
+/**
+ * Tawheed TIPS Summer 2021
+ * Aug, 07, 2021 - Assignment
+ * 
+ * Largest BST -
+ * https://classroom.google.com/c/MzcwMjU4Mzg4ODE0/a/Mzc1Njc3MjQ0MDY3/details
+ * 
+ * @author Naseer Mohammed Abdul 
+ */
 public class LargestBST {
 
     public static class Node {
