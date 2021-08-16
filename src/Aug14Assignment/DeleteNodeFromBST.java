@@ -179,5 +179,9 @@ public class DeleteNodeFromBST {
         Node updatedTreeNode = deleteNode(treeNode, nodeToBeDeleted);
         updatedTreeNode.print();
     }
+
+    
+    // Note - for the sample tree i am using, the following is not working.. 
+    // 12, 14, 20
     
 }
