@@ -1,5 +1,8 @@
 package Aug14Assignment;
 
+import java.beans.Visibility;
+import java.time.chrono.MinguoDate;
+
 public class DeleteNodeFromBST {
 
 
@@ -96,10 +99,16 @@ public class DeleteNodeFromBST {
             if (node.left == null && node.right == null) {
                 
                 // issue with code.. please debug...
-                if (node.value == nodeValue && node.parent.left.left == null && node.parent.left.right == null)
+                /* if (node.value == nodeValue && node.parent.left.left == null && node.parent.left.right == null)
                      node.parent.left = null;
                 else if (node.value == nodeValue && node.parent.right.left == null && node.parent.right.right == null)
-                     node.parent.right = null;
+                     node.parent.right = null; */
+
+                if (node.parent.value < node.value) {
+                    node.parent.right = null;
+                } else {
+                    node.parent.left = null;
+                }
                 
                 return;
             }
@@ -116,7 +125,8 @@ public class DeleteNodeFromBST {
 
             // 4. if victim node has right child or both child, then 
                 // 4.1 find minimum value node from the right subtree and make it successor 
-            if (node.right != null) {         
+            if (node.right != null) {   
+                node.right.parent = node;      
                 
                 findMinNode(node, node.right); 
                 
@@ -145,17 +155,21 @@ public class DeleteNodeFromBST {
         if (minNode == null || minNode.left == null) {
             // found the minimum value node - minNode.. 
             // need to make it successor node and replace with victim node. 
+            
+        
+            
+            if (minNode.parent != null && minNode.parent.value < minNode.value) {
+               // minNode.parent.right = minNode.right;
+               minNode.parent.right = minNode.right;
+            } 
+            
+            if (minNode.parent != null && minNode.parent.value > minNode.value) {
+              minNode.parent.left = minNode.right;    
+            }
 
-            Node successor = new Node(minNode.value);
-
-            if (victimNode.parent != null) {                    
-                victimNode.parent.left = successor;
-                successor.parent = victimNode.parent;
-            }                
-            successor.left = victimNode.left;
-            successor.right = victimNode.right;
-            successor.value = minNode.value;
-            minNode.parent.left = null;
+            victimNode.value = minNode.value;
+            //minNode.parent.left = minNode.right;
+            
             return ;
         }
 
@@ -181,7 +195,7 @@ public class DeleteNodeFromBST {
     }
 
     
-    // Note - for the sample tree i am using, the following is not working.. 
-    // 12, 14, 20
+    // Note - all the basic conditions are working with the given tree. 
+    
     
 }
