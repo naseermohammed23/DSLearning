@@ -1,7 +1,5 @@
 package Aug14Assignment;
 
-import java.beans.Visibility;
-import java.time.chrono.MinguoDate;
 
 public class DeleteNodeFromBST {
 
@@ -13,15 +11,15 @@ public class DeleteNodeFromBST {
         Node parent;
 
         /** 
-         * helper method to print the values in the tree in Pre-Order Traverse (CLR)
+         * helper method to print the values in the tree in In-Order Traverse (LCR) - ascending order. 
          */
         void print() {
-
-            System.out.print(this.value + " ");
 
             if (this.left != null)
                 this.left.print();
 
+            System.out.print(this.value + " ");
+            
             if (this.right != null)
                 this.right.print();
         }
@@ -34,7 +32,7 @@ public class DeleteNodeFromBST {
     }
 
 
-    /** Correct BST 
+    /** valid BST 
                     20
                    /  \  
                   8    22
@@ -42,15 +40,24 @@ public class DeleteNodeFromBST {
                4    12
                    /  \
                  10    14
+                   \     \
+                    11    15
     **/
     static Node getBST() {
         Node root = new Node(20);
         Node node1 = new Node(8);
-        Node node2 = new Node(22);
+        Node node2 = new Node(28);
         Node node3 = new Node(4);
         Node node4 = new Node(12);
         Node node5 = new Node(10);
         Node node6 = new Node(14);
+        Node node7 = new Node(11);
+        Node node8 = new Node(15);
+
+        Node node9 = new Node(24);
+        Node node10 = new Node(34);
+        node2.left = node9;
+        node2.right = node10;
         
         root.left = node1;
         root.right = node2;
@@ -58,6 +65,8 @@ public class DeleteNodeFromBST {
         node1.right = node4;
         node4.left = node5;
         node4.right = node6;
+        node5.right = node7;
+        node6.right = node8;
 
         return root;
 
@@ -70,11 +79,13 @@ public class DeleteNodeFromBST {
      * @param nodeValue
      * @return
      */
-    static Node deleteNode(Node node, int nodeValue) {
+    static Node deleteNode(Node root, int deleteNodeValue) {
 
-        deleteVictimNode(node, null, nodeValue);
+        // for root, parentNode is null. 
+        Node parentNode = null;
+        deleteVictimNode(root, parentNode, deleteNodeValue);
 
-        return node;
+        return root;
     }
 
 
@@ -97,12 +108,6 @@ public class DeleteNodeFromBST {
             
             // 2. if victim node is a leaf node, then delete and return
             if (node.left == null && node.right == null) {
-                
-                // issue with code.. please debug...
-                /* if (node.value == nodeValue && node.parent.left.left == null && node.parent.left.right == null)
-                     node.parent.left = null;
-                else if (node.value == nodeValue && node.parent.right.left == null && node.parent.right.right == null)
-                     node.parent.right = null; */
 
                 if (node.parent.value < node.value) {
                     node.parent.right = null;
@@ -120,8 +125,6 @@ public class DeleteNodeFromBST {
                 node = node.left;
                 return;
             }
-
-            //node.parent = parentNode;
 
             // 4. if victim node has right child or both child, then 
                 // 4.1 find minimum value node from the right subtree and make it successor 
@@ -152,14 +155,11 @@ public class DeleteNodeFromBST {
      */
     private static void findMinNode(Node victimNode, Node minNode) {
 
-        if (minNode == null || minNode.left == null) {
+        if (minNode.left == null) {
             // found the minimum value node - minNode.. 
             // need to make it successor node and replace with victim node. 
             
-        
-            
             if (minNode.parent != null && minNode.parent.value < minNode.value) {
-               // minNode.parent.right = minNode.right;
                minNode.parent.right = minNode.right;
             } 
             
@@ -168,7 +168,6 @@ public class DeleteNodeFromBST {
             }
 
             victimNode.value = minNode.value;
-            //minNode.parent.left = minNode.right;
             
             return ;
         }
@@ -192,10 +191,6 @@ public class DeleteNodeFromBST {
         System.out.println("\n\nPrint Tree after deleting node with value " + nodeToBeDeleted);
         Node updatedTreeNode = deleteNode(treeNode, nodeToBeDeleted);
         updatedTreeNode.print();
-    }
-
-    
-    // Note - all the basic conditions are working with the given tree. 
-    
+    }    
     
 }
