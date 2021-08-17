@@ -3,6 +3,15 @@ package Aug14Assignment;
 import util.Node;
 import util.TreeUtil;
 
+/**
+ * Tawheed TIPS Summer 2021
+ * Aug, 14, 2021 - Assignment
+ * 
+ * Least Common Ancestor (LCA) 
+ * https://classroom.google.com/c/MzcwMjU4Mzg4ODE0/a/Mzc1Njc3MjQ0Mjg1/details
+ * 
+ * @author Naseer Mohammed Abdul 
+ */
 public class LeastCommonAcncestor {
 
     /** Binary Tree.  
