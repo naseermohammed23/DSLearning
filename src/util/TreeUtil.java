@@ -1,7 +1,9 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * TreeUtil class to have some basic utility functions to solve Tree problems. 
@@ -117,5 +119,91 @@ public class TreeUtil {
         }
 
         return lca;
+    }
+
+    /**
+     * Print Level order on separate line; each level on separate line (use BFS, single queue using count)
+     * @param root
+     */
+    public static void printLevelOrderSeparateLineWithCount(Node root) {
+        if (root == null) {
+            return ;
+        }
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        
+        while (true) {
+
+            int count = queue.size();
+
+            if (count == 0) {
+                break;
+            }
+
+            while (count > 0) {
+
+                Node  node = queue.peek();
+                System.out.print(node.value + " ");
+                queue.remove();
+
+                if (node.left != null) 
+                    queue.add(node.left);
+                
+                if (node.right != null)
+                    queue.add(node.right);
+
+                count--;
+            }
+
+            System.out.println();
+        }
+    }
+
+    /**
+     * get Tree values in In-order
+     * @param node
+     */
+    public static List<Integer> getInOrderTraversList(Node node, List<Integer> result) {
+
+        if (node == null) {
+            return null;
+        }
+
+        // traverse left.. 
+        getInOrderTraversList(node.left, result);
+
+        // process current node
+        System.out.print(node.value + ",");
+        result.add(node.value);
+
+        // traverse right 
+        getInOrderTraversList(node.right, result);
+
+        return result;
+    }
+
+    /**
+     * get Tree values in Pre-order
+     * @param node
+     */
+    public static List<Integer> getPreOrderTraversList(Node node, List<Integer> result) {
+
+        if (node == null) {
+            return null;
+        }
+
+        // process current node
+        System.out.print(node.value + ",");
+        result.add(node.value);
+
+        // traverse left.. 
+        getPreOrderTraversList(node.left, result);
+
+        // traverse right 
+        getPreOrderTraversList(node.right, result);
+
+        return result;
     }
 }

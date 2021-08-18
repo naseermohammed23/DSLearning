@@ -3,6 +3,9 @@ package Trees;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import util.Node;
+import util.TreeUtil;
+
 /**
  * Tawheed TIPS Summer 2021
  * Aug, 07, 2021 - Assignment
@@ -23,17 +26,6 @@ public class OrderTraverse {
                    /  \
                  10    14
     **/
-    public static class Node {
-
-        Node left;
-        Node right;
-    
-        int value;
-        Node(int val) {
-            this.value = val;
-        }
-    
-    }
 
     public static void main(String[] args) {
         Node root = new Node(20);
@@ -73,7 +65,7 @@ public class OrderTraverse {
         System.out.println();
 
         System.out.println("6. Print Level Order separate Line - BFS Single Queue using count");
-        printLevelOrderSeparateLineWithCount(root);
+        TreeUtil.printLevelOrderSeparateLineWithCount(root);
         System.out.println();        
     }
 
@@ -232,44 +224,6 @@ public class OrderTraverse {
     }
 
 
-    /**
-     * 6. Print Level order on separate line; each level on separate line (use BFS, single queue using count)
-     * @param root
-     */
-    static void printLevelOrderSeparateLineWithCount(Node root) {
-        if (root == null) {
-            return ;
-        }
-
-        Queue<Node> queue = new LinkedList<>();
-        queue.add(root);
-
-        
-        while (true) {
-
-            int count = queue.size();
-
-            if (count == 0) {
-                break;
-            }
-
-            while (count > 0) {
-
-                Node  node = queue.peek();
-                System.out.print(node.value + " ");
-                queue.remove();
-
-                if (node.left != null) 
-                    queue.add(node.left);
-                
-                if (node.right != null)
-                    queue.add(node.right);
-
-                count--;
-            }
-
-            System.out.println();
-        }
-    }
+    
 
 }
