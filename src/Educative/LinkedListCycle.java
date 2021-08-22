@@ -1,5 +1,8 @@
 package Educative;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * LinkedList Cycle detection.. 
  */
@@ -38,9 +41,12 @@ public class LinkedListCycle {
         node3.add(node4);
         node4.add(node5);
         node5.add(node6);
-        node6.add(node3);
+        node6.add(null);
         
         detectCycle(head);
+        /* if (detectLoop(head)) {
+            System.out.println("Sudeep Cycle exists.. ");
+        } */
     }
 
     /**
@@ -64,4 +70,22 @@ public class LinkedListCycle {
            
        }        
     }
+
+    /* Sudeep solution with hashset.. 
+    public static boolean detectLoop(Node head)
+    {
+        Node current = head;
+        Set<Node> set = new HashSet();
+        while (current != null)
+        {
+          if (set.contains(current))
+          {
+                return true;
+          }
+          set.add(current);
+
+         current = current.next;
+        }
+       return false;
+    } */
 }

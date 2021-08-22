@@ -1,4 +1,4 @@
-package ClassworkAug1;
+package tips;
 
 import java.util.Arrays;
 
