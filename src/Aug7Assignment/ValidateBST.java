@@ -99,6 +99,13 @@ public class ValidateBST {
         return true;
 
     }
+
+    static int size(Node node) {
+
+        if (node == null) return 0;
+
+        return 1 + size(node.left) + size(node.right);
+    }
     
     
     public static void main(String[] args) {
@@ -108,5 +115,9 @@ public class ValidateBST {
 
         // In-Correct BST Example.. 
         System.out.println("Is it  BST " + (isBST(getNonBST(), null, null)));
+
+        // Size of BST Example...
+        System.out.println("Is it  BST " + (size(getBST())));
+
     }
 }
