@@ -1,18 +1,18 @@
-package Aug14Assignment;
+package trees;
 
-import util.Node;
-import util.TreeUtil;
+import trees.util.Node;
+import trees.util.TreeUtil;
 
 /**
  * Tawheed TIPS Summer 2021
  * Aug, 14, 2021 - Assignment
  * 
- * Find distance between two nodes of a Binary Tree -
- * https://classroom.google.com/c/MzcwMjU4Mzg4ODE0/a/Mzc1Njc3MjQ0MjMy/details
+ * Least Common Ancestor (LCA) 
+ * https://classroom.google.com/c/MzcwMjU4Mzg4ODE0/a/Mzc1Njc3MjQ0Mjg1/details
  * 
  * @author Naseer Mohammed Abdul 
  */
-public class DistanceBetweenNodes {
+public class LeastCommonAcncestor {
 
     /** Binary Tree.  
                       1
@@ -47,24 +47,10 @@ public class DistanceBetweenNodes {
 
     }
 
-    /**
-     * we are using the following formula for finding the distance between given nodes.
-     * Dist(root, node1) + Dist(root, node2) - 2 * Dist(root, LCA)
-     * LCA - least common ancestor. 
-     */
-    static void findDistanceBetweenNodes() {
-        int node1 = 4, node2 = 8;
-
-        int lcaOfNodes = TreeUtil.findLeastCommonAncestor(getBinaryTree(), node1, node2);
-        int distanceBetweenNodes = TreeUtil.distance(getBinaryTree(), node1) + TreeUtil.distance(getBinaryTree(), node2) - 2 * TreeUtil.distance(getBinaryTree(), lcaOfNodes);
-
-        System.out.println("Distance between Nodes  ("+node1+","+node2+") is " + distanceBetweenNodes);
-    }
-
-
+    
     public static void main(String[] args) {
+        System.out.println("Least Common Ancestor is :" + TreeUtil.findLeastCommonAncestor(getBinaryTree(), 6, 7));
 
-        findDistanceBetweenNodes();
     }
     
 }

@@ -1,11 +1,11 @@
-package Aug14Assignment;
+package trees;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import util.Node;
-import util.TreeSample;
-import util.TreeUtil;
+import trees.util.Node;
+import trees.util.TreeSample;
+import trees.util.TreeUtil;
 
 /**
  * Tawheed TIPS Summer 2021

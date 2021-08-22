@@ -1,4 +1,4 @@
-package util;
+package trees.util;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -1,18 +1,10 @@
-package Aug14Assignment;
+package trees;
 
-import util.Node;
-import util.TreeUtil;
+import trees.util.Node;
+import trees.util.TreeUtil;
 
-/**
- * Tawheed TIPS Summer 2021
- * Aug, 14, 2021 - Assignment
- * 
- * Least Common Ancestor (LCA) 
- * https://classroom.google.com/c/MzcwMjU4Mzg4ODE0/a/Mzc1Njc3MjQ0Mjg1/details
- * 
- * @author Naseer Mohammed Abdul 
- */
-public class LeastCommonAcncestor {
+public class NodeDistance {
+
 
     /** Binary Tree.  
                       1
@@ -47,10 +39,8 @@ public class LeastCommonAcncestor {
 
     }
 
-    
     public static void main(String[] args) {
-        System.out.println("Least Common Ancestor is :" + TreeUtil.findLeastCommonAncestor(getBinaryTree(), 6, 7));
-
+        System.out.println("distance to node is " + TreeUtil.distance(getBinaryTree(), 8));
     }
     
 }

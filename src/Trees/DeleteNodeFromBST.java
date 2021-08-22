@@ -1,4 +1,4 @@
-package Aug14Assignment;
+package trees;
 
 
 public class DeleteNodeFromBST {

@@ -1,4 +1,4 @@
-package Aug14Assignment;
+package trees;
 
 /**
  * Class work - 
