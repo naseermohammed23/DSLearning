@@ -1,4 +1,4 @@
-package Aug7Assignment;
+package trees;
 
 /**
  * Tawheed TIPS Summer 2021
