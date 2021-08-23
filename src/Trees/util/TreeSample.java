@@ -75,5 +75,31 @@ public class TreeSample {
         return root;
 
     }
+
+
+    /**
+     *               5
+     *             /   \
+     *            1     5
+     *           / \     \
+     *          4   4     5
+     */
+    public static Node getSingleValueTreeExample() {
+      Node root = new Node(5);
+      Node node1 = new Node(1);
+      Node node2 = new Node(5);
+      Node node3 = new Node(4);
+      Node node4 = new Node(4);
+      Node node5 = new Node(5);
+
+      root.left = node1;
+      root.right = node2;
+      node1.left = node3;
+      node1.right = node4;
+      node2.right = node5;
+
+      return root;
+
+    }
     
 }
