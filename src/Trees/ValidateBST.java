@@ -85,19 +85,23 @@ public class ValidateBST {
 
     }
 
-    static boolean isBST(Node node, Integer left, Integer right) {
+    static boolean isBST(Node node, Integer leftValue, Integer rightValue) {
 
         if (node == null) return true;
 
        // The current node's value must be between low and high.
-       if ((left != null && node.value <= left) || (right != null && node.value >= right)) return false;
+       if ((leftValue != null && node.value <= leftValue) || (rightValue != null && node.value >= rightValue)) return false;
 
-        if (!isBST(node.left, left, node.value)) return false;
+        if (!isBST(node.left, leftValue, node.value)) return false;
 
-        if (!isBST(node.right, node.value, right)) return false;
+        if (!isBST(node.right, node.value, rightValue)) return false;
 
         return true;
 
+    }
+
+    static boolean isValidBST(Node bst) {
+        return isBST(getBST(), null, null);
     }
 
     static int size(Node node) {
@@ -111,13 +115,16 @@ public class ValidateBST {
     public static void main(String[] args) {
 
         // Correct BST Example...
-        System.out.println("Is it  BST " + (isBST(getBST(), null, null)));
+        System.out.println("Is it  BST " + isValidBST(getBST()));
 
         // In-Correct BST Example.. 
-        System.out.println("Is it  BST " + (isBST(getNonBST(), null, null)));
+        System.out.println("Is it  BST " + isValidBST(getNonBST()));
 
         // Size of BST Example...
         System.out.println("Is it  BST " + (size(getBST())));
 
     }
+
+
+    
 }
