@@ -91,6 +91,46 @@ public class GraghDFSBFS {
             }
 
         }
+
+        boolean isCycle() {
+            boolean[] isVisited = new boolean[V];
+            boolean[] isAlive = new boolean[V];
+
+            for (int i=0;i<adjList.length;i++) {
+                if (!isVisited[i]) {
+                    return dfsCycle(i, isVisited, isAlive);
+                }
+            }
+
+            return false;
+        }
+
+        private boolean dfsCycle(int v, boolean[] isVisited, boolean[] isAlive) {
+            isVisited[v] = true;
+            isAlive[v] = true;
+
+            LinkedList<Integer> list = adjList[v];
+            if (list != null) {
+                for (Integer c : list) {
+                    if (c != null && !isVisited[c]) {
+                        if (dfsCycle(c, isVisited, isAlive)) {
+                            return true;
+                        }
+                    }
+
+                    if (c != null && isVisited[c] && isAlive[c]) { // if visited and isAlive then there is a cycle.. 
+                        return true; // if cycle just simple return .. 
+                    }
+                }
+            }
+
+            isAlive[v] = false;
+            
+
+            return false;
+        }
+
+        
     }
 
     public static void main(String[] args) {
@@ -105,6 +145,7 @@ public class GraghDFSBFS {
         graph.addEdge(3, null);
         graph.addEdge(4, null);
         graph.addEdge(5, 2);
+        graph.addEdge(2, 0); // cycle in the graph.. 
 
         System.out.println("Printing the Graph using BFS ... ");
         
@@ -114,6 +155,9 @@ public class GraghDFSBFS {
         System.out.println("Printing the Graph using DFS ... ");
         
         graph.printGraphUsingDFS();
+
+        System.out.println();
+        System.out.println("Cycle exist in the Graph - " + graph.isCycle());
     }
 
 }
