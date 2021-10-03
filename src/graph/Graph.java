@@ -170,4 +170,30 @@ public class Graph {
 
         return -1;
     }
+
+    void topologicalSort() {
+        boolean[] isVisited = new boolean[V];
+        for (int i=0;i<adjList.length; i++) {
+            if (!isVisited[i]) {
+                dfsTopologicalSort(i, isVisited);
+            }
+        }
+    }
+
+    void dfsTopologicalSort(int v, boolean[] isVisited) {
+
+        isVisited[v] = true;
+
+        LinkedList<Integer> list = adjList[v];
+
+        if (list != null) {
+            for (Integer c : list) {
+                if (c != null && !isVisited[c]) {
+                    dfsTopologicalSort(c, isVisited);                        
+                }
+            }
+        }
+        System.out.print(v + " ");
+
+    }
 }
