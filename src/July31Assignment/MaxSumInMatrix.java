@@ -81,6 +81,8 @@ public class MaxSumInMatrix {
 
         int[][] dp = new int[ary.length][ary[0].length];
 
+        dp[lastRow][lastCol] = ary[lastRow][lastCol];
+
         // find max of lastRow values of the matrix. 
         for (int c = lastCol - 1; c >= 0; c--) {
             dp[lastRow][c] = ary[lastRow][c] + dp[lastRow][c + 1];
