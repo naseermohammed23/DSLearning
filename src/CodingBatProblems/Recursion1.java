@@ -1,7 +1,6 @@
 package CodingBatProblems;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.*;
 
 public class Recursion1 {
 
@@ -12,7 +11,7 @@ public class Recursion1 {
         // System.out.println(factorial(4));
         // System.out.println(bunnyEars(32));
         // System.out.println(bunnyEars2(32));
-        System.out.println(fibonacci(10));
+        // System.out.println(fibonacci(10));
         // System.out.println(sumDigits(10110));
         // System.out.println(count7(7700));
         // System.out.println(count8(8888));
