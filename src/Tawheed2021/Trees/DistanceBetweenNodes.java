@@ -1,7 +1,7 @@
 package Trees;
 
 import Trees.util.Node;
-import trees.util.TreeUtil;
+import Trees.util.TreeUtil;
 
 /**
  * Tawheed TIPS Summer 2021

@@ -42,7 +42,7 @@ public class SingleValueTree {
 
     public static void main(String[] args) {
 
-        Node root = Treesample.getSingleValueTreeExample();
+        Node root = TreeSample.getSingleValueTreeExample();
 
         System.out.println("Single Value Subtree : " + singleValueSubTree(root));
         
