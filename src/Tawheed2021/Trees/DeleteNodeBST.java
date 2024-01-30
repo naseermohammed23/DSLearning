@@ -1,4 +1,4 @@
-package trees;
+package Trees;
 
 /**
  * Class work - 

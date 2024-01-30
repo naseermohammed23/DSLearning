@@ -1,4 +1,4 @@
-package trees.util;
+package Trees.util;
 
 public class TreeSample {
 

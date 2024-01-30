@@ -1,7 +1,7 @@
-package trees;
+package Trees;
 
-import trees.util.Node;
-import trees.util.TreeUtil;
+import Trees.util.Node;
+import Trees.util.TreeUtil;
 
 public class NodeDistance {
 

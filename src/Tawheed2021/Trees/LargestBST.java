@@ -1,4 +1,4 @@
-package trees;
+package Trees;
 
 /**
  * Tawheed TIPS Summer 2021

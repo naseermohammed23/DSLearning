@@ -1,6 +1,6 @@
-package trees;
+package Trees;
 
-import trees.util.Node;
+import Trees.util.Node;
 import trees.util.TreeUtil;
 
 /**

@@ -1,7 +1,7 @@
-package trees;
+package Trees;
 
-import trees.util.Node;
-import trees.util.TreeSample;
+import Trees.util.Node;
+import Trees.util.TreeSample;
 
 /**
  * Tawheed TIPS Summer 2021
@@ -42,7 +42,7 @@ public class SingleValueTree {
 
     public static void main(String[] args) {
 
-        Node root = TreeSample.getSingleValueTreeExample();
+        Node root = Treesample.getSingleValueTreeExample();
 
         System.out.println("Single Value Subtree : " + singleValueSubTree(root));
         

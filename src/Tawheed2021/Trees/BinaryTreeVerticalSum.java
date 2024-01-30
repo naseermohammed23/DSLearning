@@ -1,7 +1,7 @@
-package trees;
+package Trees;
 
-import trees.util.Node;
-import trees.util.TreeSample;
+import Trees.util.Node;
+import Trees.util.TreeSample;
 
 public class BinaryTreeVerticalSum {
     

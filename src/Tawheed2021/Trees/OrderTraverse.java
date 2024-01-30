@@ -1,10 +1,10 @@
-package trees;
+package Trees;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-import trees.util.Node;
-import trees.util.TreeUtil;
+import Trees.util.Node;
+import Trees.util.TreeUtil;
 
 /**
  * Tawheed TIPS Summer 2021
