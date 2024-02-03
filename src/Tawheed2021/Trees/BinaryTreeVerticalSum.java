@@ -1,6 +1,6 @@
 package Trees;
 
-import Trees.util.Node;
+import Trees.util.TreeNode;
 import Trees.util.TreeSample;
 
 public class BinaryTreeVerticalSum {
@@ -11,13 +11,13 @@ public class BinaryTreeVerticalSum {
 
     }
 
-    private static void verticalSum(Node binaryTree) {
+    private static void verticalSum(TreeNode binaryTree) {
 
         int sum = verticalSumHelper(binaryTree, 0);
 
     }
 
-    private static int verticalSumHelper(Node binaryTree, int i) {
+    private static int verticalSumHelper(TreeNode binaryTree, int i) {
 
 
         verticalSum(binaryTree);

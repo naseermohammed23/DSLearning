@@ -1,14 +1,18 @@
 package Trees.util;
 
-public class Node {
+public class TreeNode {
 
-    public Node left;
-    public Node right;
+    public TreeNode left;
+    public TreeNode right;
 
-    public int value;
+    public int val;
     
-    public Node(int val) {
-        this.value = val;
+    public TreeNode(int val) {
+        this.val = val;
+    }
+
+    public Integer getVal() {
+        return val;
     }
 
     /** 
@@ -19,7 +23,7 @@ public class Node {
         if (this.left != null)
             this.left.printInOrder();
 
-        System.out.print(this.value + " ");
+        System.out.print(this.val + " ");
         
         if (this.right != null)
             this.right.printInOrder();
@@ -30,7 +34,7 @@ public class Node {
      */
     public void printPreOrder() {
 
-        System.out.print(this.value + " ");
+        System.out.print(this.val + " ");
 
         if (this.left != null)
             this.left.printPreOrder();
@@ -51,7 +55,7 @@ public class Node {
         if (this.right != null)
             this.right.printPostOrder();
 
-        System.out.print(this.value + " ");
+        System.out.print(this.val + " ");
     }
 
     

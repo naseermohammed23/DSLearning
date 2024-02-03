@@ -14,27 +14,27 @@ public class TreeUtil {
     /**
      * Public method to find the distance between root and the given node value. 
      * @param node
-     * @param nodeValue
+     * @param node1
      * @return
      */
-    public static int distance(Node node, int nodeValue) { 
-        return distanceHelper(node, nodeValue, 0);
+    public static int distance(TreeNode node, TreeNode node1) { 
+        return distanceHelper(node, node1, 0);
     }
 
     /**
      * Private Helper method to find the distance between root and the given node value in a Binary tree.
      * @param node
-     * @param nodeValue
+     * @param node1
      * @param distance
      * @return
      */
-    private static int distanceHelper(Node node, int nodeValue, int distance) {
+    private static int distanceHelper(TreeNode node, TreeNode node1, int distance) {
 
         if (node == null) return 0;
 
-        if (node.value == nodeValue) return distance;
+        if (node.val == node1.val) return distance;
 
-        return Math.max(distanceHelper(node.left, nodeValue, distance+1), distanceHelper(node.right, nodeValue, distance+1));
+        return Math.max(distanceHelper(node.left, node1, distance+1), distanceHelper(node.right, node1, distance+1));
     }
 
     /**
@@ -42,7 +42,7 @@ public class TreeUtil {
      * @param node
      * @return
      */
-    public static Node minNodeBST(Node node) {
+    public static TreeNode minNodeBST(TreeNode node) {
         if (node == null) return null;
 
         if (node.left == null) return node;
@@ -55,16 +55,16 @@ public class TreeUtil {
      * @param node
      * @return
      */
-    public static int minNodeValueBST(Node node) {
-        Node minNode = minNodeBST(node);
-        return minNode != null ? minNode.value : 0;
+    public static int minNodeValueBST(TreeNode node) {
+        TreeNode minNode = minNodeBST(node);
+        return minNode != null ? minNode.val : 0;
     }
 
 
-    public static List<Integer> findPathNode(Node root, int nodeValue) {
+    public static List<Integer> findPathNode(TreeNode root, TreeNode node) {
         List<Integer> pathList = new ArrayList<>();
         
-        if (findPathNode(root, nodeValue, pathList)) {
+        if (findPathNode(root, node, pathList)) {
             return pathList;
         } else {
             return new ArrayList<>();
@@ -73,18 +73,19 @@ public class TreeUtil {
 
     /**
      * A Recursive method to print all paths in the tree 
-     * @param node
+     * @param root
      * @param result
      */
-    private static boolean findPathNode(Node node, int nodeValue, List<Integer> pathList) {
+    private static boolean findPathNode(TreeNode root, TreeNode node, List<Integer> pathList) {
     
-        if (node == null) return false;
+        if (root == null) return false;
 
-        pathList.add(node.value);
+        System.out.print(root.val+" ");
+        pathList.add(root.val);
 
-        if (node.value == nodeValue) return true;
+        if (root.val == node.getVal()) return true;
 
-        if (findPathNode(node.left, nodeValue, pathList) || findPathNode(node.right, nodeValue, pathList)) {
+        if (findPathNode(root.left, node, pathList) || findPathNode(root.right, node, pathList)) {
             return true;
         }
 
@@ -99,38 +100,40 @@ public class TreeUtil {
     /**
      * to find the least common ancestor between 2 given nodes in a binary tree. 
      * @param root
-     * @param node1Value
-     * @param node2Value
+     * @param node
+     * @param node2
      * @return
      */
-    public static int findLeastCommonAncestor(Node root, int node1Value, int node2Value) {
+    public static TreeNode findLeastCommonAncestor(TreeNode root, TreeNode node, TreeNode node2) {
 
-        List<Integer> node1Path = TreeUtil.findPathNode(root, node1Value);
+        List<Integer> node1Path = TreeUtil.findPathNode(root, node);
+        System.out.println();
 
-        List<Integer> node2Path = TreeUtil.findPathNode(root, node2Value);
+        List<Integer> node2Path = TreeUtil.findPathNode(root, node2);
+        System.out.println();
 
         int lca = -1;
 
         for (int i=0,j=0; ;i++,j++) {
-            if (node1Path.get(i) != node2Path.get(j)) {
-                lca = node1Path.get(i-1);
+            if (node1Path.size() < i || node2Path.size() < j || node1Path.get(i) != node2Path.get(j)) {
+                lca = node1Path.get(i);
                 break;
             }
         }
 
-        return lca;
+        return new TreeNode(lca);
     }
 
     /**
      * Print Level order on separate line; each level on separate line (use BFS, single queue using count)
      * @param root
      */
-    public static void printLevelOrderSeparateLineWithCount(Node root) {
+    public static void printLevelOrderSeparateLineWithCount(TreeNode root) {
         if (root == null) {
             return ;
         }
 
-        Queue<Node> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
         
@@ -144,8 +147,8 @@ public class TreeUtil {
 
             while (count > 0) {
 
-                Node  node = queue.peek();
-                System.out.print(node.value + " ");
+                TreeNode  node = queue.peek();
+                System.out.print(node.val + " ");
                 queue.remove();
 
                 if (node.left != null) 
@@ -165,7 +168,7 @@ public class TreeUtil {
      * get Tree values in In-order
      * @param node
      */
-    public static List<Integer> getInOrderTraversList(Node node, List<Integer> result) {
+    public static List<Integer> getInOrderTraversList(TreeNode node, List<Integer> result) {
 
         if (node == null) {
             return null;
@@ -175,8 +178,8 @@ public class TreeUtil {
         getInOrderTraversList(node.left, result);
 
         // process current node
-        System.out.print(node.value + ",");
-        result.add(node.value);
+        System.out.print(node.val + ",");
+        result.add(node.val);
 
         // traverse right 
         getInOrderTraversList(node.right, result);
@@ -188,15 +191,15 @@ public class TreeUtil {
      * get Tree values in Pre-order
      * @param node
      */
-    public static List<Integer> getPreOrderTraversList(Node node, List<Integer> result) {
+    public static List<Integer> getPreOrderTraversList(TreeNode node, List<Integer> result) {
 
         if (node == null) {
             return null;
         }
 
         // process current node
-        System.out.print(node.value + ",");
-        result.add(node.value);
+        System.out.print(node.val + ",");
+        result.add(node.val);
 
         // traverse left.. 
         getPreOrderTraversList(node.left, result);
@@ -205,5 +208,117 @@ public class TreeUtil {
         getPreOrderTraversList(node.right, result);
 
         return result;
+    }
+
+    // to build a tree from the integer array 
+    public static TreeNode buildTree(Integer[] array) {
+        if (array == null || array.length == 0 || array[0] == null) {
+            return null;
+        }
+
+        TreeNode root = new TreeNode(array[0]);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        int index = 1;
+        while (index < array.length) {
+            TreeNode current = queue.poll();
+
+            if (index < array.length && array[index] != null) {
+                current.left = new TreeNode(array[index]);
+                queue.offer(current.left);
+            }
+            index++;
+
+            if (index < array.length && array[index] != null) {
+                current.right = new TreeNode(array[index]);
+                queue.offer(current.right);
+            }
+            index++;
+        }
+
+        return root;
+    }
+
+    // to build a tree from the string array 
+    public static TreeNode buildTree(String[] array) {
+        if (array == null || array.length == 0 || array[0].equals("null")) {
+            return null;
+        }
+
+        TreeNode root = new TreeNode(Integer.parseInt(array[0]));
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        int index = 1;
+        while (index < array.length) {
+            TreeNode current = queue.poll();
+
+            if (index < array.length && !array[index].equals("null")) {
+                current.left = new TreeNode(Integer.parseInt(array[index]));
+                queue.offer(current.left);
+            }
+            index++;
+
+            if (index < array.length && !array[index].equals("null")) {
+                current.right = new TreeNode(Integer.parseInt(array[index]));
+                queue.offer(current.right);
+            }
+            index++;
+        }
+
+        return root;
+    }
+
+    // to draw the tree on console horizontally
+    public static void drawTree(TreeNode root) {
+        if (root == null) {
+            System.out.println("Tree is empty.");
+            return;
+        }
+
+        printTree(root, 0);
+    }
+
+    // to draw the tree on console horizontally
+    private static void printTree(TreeNode node, int level) {
+        if (node == null) {
+            return;
+        }
+
+        printTree(node.right, level + 1);
+
+        for (int i = 0; i < level; i++) {
+            System.out.print("   ");
+        }
+        System.out.println(node.val);
+
+        printTree(node.left, level + 1);
+    }
+
+
+    // to verify if the give tree is Binary Search Tree
+    public static boolean isBST(TreeNode node, Integer leftValue, Integer rightValue) {
+
+        if (node == null) return true;
+
+       // The current node's val must be between low and high.
+       if ((leftValue != null && node.val <= leftValue) || (rightValue != null && node.val >= rightValue)) return false;
+
+        if (!isBST(node.left, leftValue, node.val)) return false;
+
+        if (!isBST(node.right, node.val, rightValue)) return false;
+
+        return true;
+
+    }
+
+
+    // to find size of a tree
+    public static int size(TreeNode node) {
+
+        if (node == null) return 0;
+
+        return 1 + size(node.left) + size(node.right);
     }
 }

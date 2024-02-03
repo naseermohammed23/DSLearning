@@ -1,6 +1,6 @@
 package Trees;
 
-import Trees.util.Node;
+import Trees.util.TreeNode;
 import Trees.util.TreeSample;
 
 /**
@@ -21,18 +21,18 @@ public class SingleValueTree {
      * @param node
      * @return
      */
-    static int singleValueSubTree(Node node) {
+    static int singleValueSubTree(TreeNode node) {
 
         if (node.left == null && node.right == null) {
              return 1;
         }
 
         
-        if (node.left == null && node.right != null && node.value == node.right.value) {
+        if (node.left == null && node.right != null && node.val == node.right.val) {
             return 1 + singleValueSubTree(node.right);
-        } else if (node.left != null && node.right == null && node.value == node.left.value) {
+        } else if (node.left != null && node.right == null && node.val == node.left.val) {
             return 1 + singleValueSubTree(node.left);
-        } else if (node.value == node.left.value && node.value == node.right.value) {
+        } else if (node.val == node.left.val && node.val == node.right.val) {
             return 1 + singleValueSubTree(node.left) + singleValueSubTree(node.right);
         } else {       
             return singleValueSubTree(node.left) + singleValueSubTree(node.right);
@@ -42,7 +42,7 @@ public class SingleValueTree {
 
     public static void main(String[] args) {
 
-        Node root = TreeSample.getSingleValueTreeExample();
+        TreeNode root = TreeSample.getSingleValueTreeExample();
 
         System.out.println("Single Value Subtree : " + singleValueSubTree(root));
         

@@ -1,6 +1,6 @@
 package Trees;
 
-import Trees.util.Node;
+import Trees.util.TreeNode;
 import Trees.util.TreeUtil;
 
 /**
@@ -15,42 +15,52 @@ import Trees.util.TreeUtil;
 public class LeastCommonAcncestor {
 
     /** Binary Tree.  
-                      1
+                      3
                     /   \  
-                  2       3
+                  5       1
                 /   \    /  \
-               4    5   6    7
-                         \
-                          8
+               6    2   0    8
+                   / \
+                  7   4     
     **/
-    static Node getBinaryTree() {
-        Node root = new Node(1);
-        Node node1 = new Node(2);
-        Node node2 = new Node(3);
-        Node node3 = new Node(4);
-        Node node4 = new Node(5);
-        Node node5 = new Node(6);
-        Node node6 = new Node(7);
-        Node node7 = new Node(8);
-        
-        root.left = node1;
-        root.right = node2;
-        node1.left = node3;
-        node1.right = node4;
-
-        node2.left = node5;
-        node2.right = node6;
-
-        node5.right = node7;
-        
-        return root;
-
-    }
-
+    static Integer bt1[] = new Integer[]{3,5,1,6,2,0,8,null,null,7,4};
+    static Integer bt2[] = new Integer[]{3,5,null,7,null,9,null,11,null};
     
     public static void main(String[] args) {
-        System.out.println("Least Common Ancestor is :" + TreeUtil.findLeastCommonAncestor(getBinaryTree(), 6, 7));
+        // TreeNode lca = TreeUtil.findLeastCommonAncestor(TreeUtil.buildTree(bt1), new TreeNode(5), new TreeNode(4));
+        // System.out.println("Least Common Ancestor is :" + lca.val);
 
+        // TreeNode lca_leftBT = TreeUtil.findLeastCommonAncestor(TreeUtil.buildTree(bt2), new TreeNode(9), new TreeNode(11));
+        // System.out.println("Least Common Ancestor for Left BT is :" + lca_leftBT.val);
+
+        LeastCommonAcncestor l = new LeastCommonAcncestor();
+        Integer bt3[] = l.getIntegerArrayFor10000(361);
+
+        TreeNode lca_leftBT1 = TreeUtil.findLeastCommonAncestor(TreeUtil.buildTree(bt3), new TreeNode(128), new TreeNode(129));
+        System.out.println("Least Common Ancestor for Left BT is :" + lca_leftBT1.val);
+
+
+    }    
+
+    public Integer[] getIntegerArrayFor10000(int size) {      
+      Integer result[] = new Integer[size];
+
+      System.out.println("[");
+      for(int i=0,j=0;i<result.length;j++) {
+        if (i == 0) {
+          result[i] = -1;
+          System.out.print(result[i] + ",");
+          i++;
+          --j;
+        } else {
+          result[i] = j;
+          result[i+1] = null; 
+          System.out.print(result[i] + ","+result[i+1]+",");
+          i=i+2;
+        }          
+      }
+      System.out.println("]");
+
+      return result;
     }
-    
 }

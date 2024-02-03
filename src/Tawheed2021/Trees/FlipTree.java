@@ -1,5 +1,8 @@
 package Trees;
 
+import Trees.util.TreeNode;
+import Trees.util.TreeUtil;
+
 /**
  * Tawheed TIPS Summer 2021
  * Aug, 14, 2021 - Assignment
@@ -30,14 +33,14 @@ public class FlipTree {
                  / \    / \
                 4   5  6   7
     **/
-    static Node getBinaryTree() {
-        Node root = new Node(1);
-        Node node1 = new Node(2);
-        Node node2 = new Node(3);
-        Node node3 = new Node(4);
-        Node node4 = new Node(5);
-        Node node5 = new Node(6);
-        Node node6 = new Node(7);
+    static TreeNode getBinaryTree() {
+        TreeNode root = new TreeNode(1);
+        TreeNode node1 = new TreeNode(2);
+        TreeNode node2 = new TreeNode(3);
+        TreeNode node3 = new TreeNode(4);
+        TreeNode node4 = new TreeNode(5);
+        TreeNode node5 = new TreeNode(6);
+        TreeNode node6 = new TreeNode(7);
 
         root.left = node1;
         root.right = node2;
@@ -51,12 +54,16 @@ public class FlipTree {
     }
 
     public static void main(String[] args) {
-        Node root = getBinaryTree();
+        TreeNode root = getBinaryTree();
         System.out.println("Pre Order traversal before Flip : ");
         printPreOrderTravers(root);
+        System.out.println();
+        TreeUtil.drawTree(root);
         System.out.println("\n Pre Order traversal After Flip : ");
         flipTree(root);
         printPreOrderTravers(root);
+        System.out.println();
+        TreeUtil.drawTree(root);
     }
 
 
@@ -64,12 +71,12 @@ public class FlipTree {
      * A method to flip the given tree. 
      * @param node
      */
-    static void flipTree(Node node) {
+    static void flipTree(TreeNode node) {
 
         if (node == null) return ;
 
         if (node.left != null || node.right != null) {
-            Node temp = node.left; 
+            TreeNode temp = node.left; 
             node.left = node.right;
             node.right = temp;
         }
@@ -84,14 +91,14 @@ public class FlipTree {
      * Print Tree values in Pre-order
      * @param node
      */
-    static void printPreOrderTravers(Node node) {
+    static void printPreOrderTravers(TreeNode node) {
 
         if (node == null) {
             return ;
         }
 
         // process current node
-        System.out.print(node.value + ",");
+        System.out.print(node.val + ",");
 
         // traverse left.. 
         printPreOrderTravers(node.left);

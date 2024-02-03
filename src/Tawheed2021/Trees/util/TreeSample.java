@@ -11,15 +11,15 @@ public class TreeSample {
                          \
                           8
     **/
-    public static Node getBinaryTree() {
-        Node root = new Node(1);
-        Node node1 = new Node(2);
-        Node node2 = new Node(3);
-        Node node3 = new Node(4);
-        Node node4 = new Node(5);
-        Node node5 = new Node(6);
-        Node node6 = new Node(7);
-        Node node7 = new Node(8);
+    public static TreeNode getBinaryTree() {
+        TreeNode root = new TreeNode(1);
+        TreeNode node1 = new TreeNode(2);
+        TreeNode node2 = new TreeNode(3);
+        TreeNode node3 = new TreeNode(4);
+        TreeNode node4 = new TreeNode(5);
+        TreeNode node5 = new TreeNode(6);
+        TreeNode node6 = new TreeNode(7);
+        TreeNode node7 = new TreeNode(8);
         
         root.left = node1;
         root.right = node2;
@@ -47,19 +47,19 @@ public class TreeSample {
                    \     \
                     11    15
     **/
-    public static Node getBST() {
-        Node root = new Node(20);
-        Node node1 = new Node(8);
-        Node node2 = new Node(28);
-        Node node3 = new Node(4);
-        Node node4 = new Node(12);
-        Node node5 = new Node(10);
-        Node node6 = new Node(14);
-        Node node7 = new Node(11);
-        Node node8 = new Node(15);
+    public static TreeNode getBST() {
+        TreeNode root = new TreeNode(20);
+        TreeNode node1 = new TreeNode(8);
+        TreeNode node2 = new TreeNode(28);
+        TreeNode node3 = new TreeNode(4);
+        TreeNode node4 = new TreeNode(12);
+        TreeNode node5 = new TreeNode(10);
+        TreeNode node6 = new TreeNode(14);
+        TreeNode node7 = new TreeNode(11);
+        TreeNode node8 = new TreeNode(15);
 
-        Node node9 = new Node(24);
-        Node node10 = new Node(34);
+        TreeNode node9 = new TreeNode(24);
+        TreeNode node10 = new TreeNode(34);
         node2.left = node9;
         node2.right = node10;
         
@@ -84,13 +84,13 @@ public class TreeSample {
      *           / \     \
      *          4   4     5
      */
-    public static Node getSingleValueTreeExample() {
-      Node root = new Node(5);
-      Node node1 = new Node(1);
-      Node node2 = new Node(5);
-      Node node3 = new Node(4);
-      Node node4 = new Node(4);
-      Node node5 = new Node(5);
+    public static TreeNode getSingleValueTreeExample() {
+      TreeNode root = new TreeNode(5);
+      TreeNode node1 = new TreeNode(1);
+      TreeNode node2 = new TreeNode(5);
+      TreeNode node3 = new TreeNode(4);
+      TreeNode node4 = new TreeNode(4);
+      TreeNode node5 = new TreeNode(5);
 
       root.left = node1;
       root.right = node2;

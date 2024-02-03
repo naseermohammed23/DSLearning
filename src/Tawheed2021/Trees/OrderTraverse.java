@@ -3,7 +3,7 @@ package Trees;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import Trees.util.Node;
+import Trees.util.TreeNode;
 import Trees.util.TreeUtil;
 
 /**
@@ -28,13 +28,13 @@ public class OrderTraverse {
     **/
 
     public static void main(String[] args) {
-        Node root = new Node(20);
-        Node node1 = new Node(8);
-        Node node2 = new Node(22);
-        Node node3 = new Node(4);
-        Node node4 = new Node(12);
-        Node node5 = new Node(10);
-        Node node6 = new Node(14);
+        TreeNode root = new TreeNode(20);
+        TreeNode node1 = new TreeNode(8);
+        TreeNode node2 = new TreeNode(22);
+        TreeNode node3 = new TreeNode(4);
+        TreeNode node4 = new TreeNode(12);
+        TreeNode node5 = new TreeNode(10);
+        TreeNode node6 = new TreeNode(14);
         
         root.left = node1;
         root.right = node2;
@@ -60,7 +60,7 @@ public class OrderTraverse {
         System.out.println();
 
         System.out.println("5. Print Level Order separate Line - BFS 2 Queue");
-        Queue<Node> result = printLevelOrderSeparateLineWith2Queue(root);
+        Queue<TreeNode> result = printLevelOrderSeparateLineWith2Queue(root);
         printNode(result);
         System.out.println();
 
@@ -75,7 +75,7 @@ public class OrderTraverse {
      * 1. Print Tree values in In-order
      * @param node
      */
-    static void printInOrderTravers(Node node) {
+    static void printInOrderTravers(TreeNode node) {
 
         if (node == null) {
             return ;
@@ -85,7 +85,7 @@ public class OrderTraverse {
         printInOrderTravers(node.left);
 
         // process current node
-        System.out.print(node.value + ",");
+        System.out.print(node.val + ",");
 
         // traverse right 
         printInOrderTravers(node.right);
@@ -95,14 +95,14 @@ public class OrderTraverse {
      * 2. Print Tree values in Pre-order
      * @param node
      */
-    static void printPreOrderTravers(Node node) {
+    static void printPreOrderTravers(TreeNode node) {
 
         if (node == null) {
             return ;
         }
 
         // process current node
-        System.out.print(node.value + ",");
+        System.out.print(node.val + ",");
 
         // traverse left.. 
         printPreOrderTravers(node.left);
@@ -116,7 +116,7 @@ public class OrderTraverse {
      * 3. Print Tree values in Post-order
      * @param node
      */
-    static void printPostOrderTravers(Node node) {
+    static void printPostOrderTravers(TreeNode node) {
 
         if (node == null) {
             return ;
@@ -129,19 +129,19 @@ public class OrderTraverse {
         printPostOrderTravers(node.right);
 
         // process current node
-        System.out.print(node.value + ",");
+        System.out.print(node.val + ",");
     }
 
     /**
      * 4. Print Level order on same line (use BFS, single queue method)
      * @param root
      */
-    static void printLevelOrderSameLine(Node root) {
+    static void printLevelOrderSameLine(TreeNode root) {
         if (root == null) {
             return ;
         }
 
-        Queue<Node> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
 
         queue.add(root);
         while (true) {
@@ -152,8 +152,8 @@ public class OrderTraverse {
 
             while (queue.size() > 0) {
 
-                Node  node = queue.peek();
-                System.out.print(node.value + " ");
+                TreeNode  node = queue.peek();
+                System.out.print(node.val + " ");
                 queue.remove();
 
                 if (node.left != null) 
@@ -169,13 +169,13 @@ public class OrderTraverse {
      * 5. Print Level order on separate line; each level on separate line (use BFS, two queues method)
      * @param root
      */
-    static Queue<Node> printLevelOrderSeparateLineWith2Queue(Node root) {
+    static Queue<TreeNode> printLevelOrderSeparateLineWith2Queue(TreeNode root) {
         if (root == null) {
             return new LinkedList<>();
         }
 
-        Queue<Node> queue = new LinkedList<>();
-        Queue<Node> outputQueue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> outputQueue = new LinkedList<>();
         queue.add(root);
 
         
@@ -189,7 +189,7 @@ public class OrderTraverse {
 
             while (count > 0) {
 
-                Node  node = queue.peek();
+                TreeNode  node = queue.peek();
                 outputQueue.add(node);
                 queue.remove();
 
@@ -211,14 +211,14 @@ public class OrderTraverse {
      * helper method to print the queue.. 
      * @param result
      */
-    static void printNode(Queue<Node> result) {
+    static void printNode(Queue<TreeNode> result) {
         while (result.size() > 0) {
-            Node node = result.peek();
+            TreeNode node = result.peek();
             result.remove();
             if (node == null) {
                 System.out.println();
             } else {
-                System.out.print(node.value+" ");
+                System.out.print(node.val+" ");
             }
         }
     }

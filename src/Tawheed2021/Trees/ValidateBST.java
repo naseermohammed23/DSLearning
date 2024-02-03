@@ -1,5 +1,7 @@
 package Trees;
 
+import Trees.util.TreeNode;
+import Trees.util.TreeUtil;
 
 /**
  * Tawheed TIPS Summer 2021
@@ -13,19 +15,6 @@ package Trees;
 public class ValidateBST {
 
 
-    public static class Node {
-
-        Node left;
-        Node right;
-    
-        int value;
-        Node(int val) {
-            this.value = val;
-        }
-    
-    }
-
-
     /** Correct BST 
                     20
                    /  \  
@@ -35,14 +24,14 @@ public class ValidateBST {
                    /  \
                  10    14
     **/
-    static Node getBST() {
-        Node root = new Node(20);
-        Node node1 = new Node(8);
-        Node node2 = new Node(22);
-        Node node3 = new Node(4);
-        Node node4 = new Node(12);
-        Node node5 = new Node(10);
-        Node node6 = new Node(14);
+    static TreeNode getBST() {
+        TreeNode root = new TreeNode(20);
+        TreeNode node1 = new TreeNode(8);
+        TreeNode node2 = new TreeNode(22);
+        TreeNode node3 = new TreeNode(4);
+        TreeNode node4 = new TreeNode(32);
+        TreeNode node5 = new TreeNode(10);
+        TreeNode node6 = new TreeNode(14);
         
         root.left = node1;
         root.right = node2;
@@ -65,14 +54,14 @@ public class ValidateBST {
                    /  \
              ---> 7    14
     **/
-    static Node getNonBST() {
-        Node root = new Node(20);
-        Node node1 = new Node(8);
-        Node node2 = new Node(22);
-        Node node3 = new Node(4);
-        Node node4 = new Node(12);
-        Node node5 = new Node(7);
-        Node node6 = new Node(14);
+    static TreeNode getNonBST() {
+        TreeNode root = new TreeNode(20);
+        TreeNode node1 = new TreeNode(8);
+        TreeNode node2 = new TreeNode(22);
+        TreeNode node3 = new TreeNode(4);
+        TreeNode node4 = new TreeNode(12);
+        TreeNode node5 = new TreeNode(7);
+        TreeNode node6 = new TreeNode(14);
         
         root.left = node1;
         root.right = node2;
@@ -85,30 +74,8 @@ public class ValidateBST {
 
     }
 
-    static boolean isBST(Node node, Integer leftValue, Integer rightValue) {
-
-        if (node == null) return true;
-
-       // The current node's value must be between low and high.
-       if ((leftValue != null && node.value <= leftValue) || (rightValue != null && node.value >= rightValue)) return false;
-
-        if (!isBST(node.left, leftValue, node.value)) return false;
-
-        if (!isBST(node.right, node.value, rightValue)) return false;
-
-        return true;
-
-    }
-
-    static boolean isValidBST(Node bst) {
-        return isBST(getBST(), null, null);
-    }
-
-    static int size(Node node) {
-
-        if (node == null) return 0;
-
-        return 1 + size(node.left) + size(node.right);
+    static boolean isValidBST(TreeNode bst) {
+        return TreeUtil.isBST(getBST(), null, null);
     }
     
     
@@ -121,7 +88,7 @@ public class ValidateBST {
         System.out.println("Is it  BST " + isValidBST(getNonBST()));
 
         // Size of BST Example...
-        System.out.println("Is it  BST " + (size(getBST())));
+        System.out.println("Is it  BST " + (TreeUtil.size(getBST())));
 
     }
 

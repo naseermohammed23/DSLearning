@@ -3,7 +3,7 @@ package Trees;
 import java.util.ArrayList;
 import java.util.List;
 
-import Trees.util.Node;
+import Trees.util.TreeNode;
 import Trees.util.TreeSample;
 import Trees.util.TreeUtil;
 
@@ -25,7 +25,7 @@ public class RebuildBinaryTree {
      * @param preList - pre-order list
      * @return
      */
-    public static Node rebuildBT(List<Integer> inList, List<Integer> preList) {
+    public static TreeNode rebuildBT(List<Integer> inList, List<Integer> preList) {
 
         return rebuildBTHelper(inList, 0, inList.size()-1, preList, 0, preList.size()-1);
     }
@@ -41,7 +41,7 @@ public class RebuildBinaryTree {
      * @param preEnd - end index of the pre-order list
      * @return
      */
-    private static Node rebuildBTHelper(List<Integer> inList, int inStart, int inEnd, List<Integer> preList, int preStart, int preEnd) {
+    private static TreeNode rebuildBTHelper(List<Integer> inList, int inStart, int inEnd, List<Integer> preList, int preStart, int preEnd) {
         
 
         if (inStart > inEnd) return null;
@@ -58,7 +58,7 @@ public class RebuildBinaryTree {
 
         int len = rootIdx - inStart;
         
-        Node node = new Node(rootValue);
+        TreeNode node = new TreeNode(rootValue);
         node.left = rebuildBTHelper(inList, inStart, rootIdx-1, preList, preStart + 1, preStart+len);
         node.right = rebuildBTHelper(inList, rootIdx+1, inEnd, preList, preStart+len+1, preEnd);
         
@@ -67,7 +67,7 @@ public class RebuildBinaryTree {
     }
 
     public static void main(String[] args) {
-        Node treeNode = TreeSample.getBinaryTree();
+        TreeNode treeNode = TreeSample.getBinaryTree();
 
         List<Integer> inList = TreeUtil.getInOrderTraversList(treeNode, new ArrayList<>());
 
@@ -75,7 +75,7 @@ public class RebuildBinaryTree {
 
         List<Integer> preList = TreeUtil.getPreOrderTraversList(treeNode, new ArrayList<>());
 
-        Node node = rebuildBT(inList, preList);
+        TreeNode node = rebuildBT(inList, preList);
 
         System.out.println();
 
