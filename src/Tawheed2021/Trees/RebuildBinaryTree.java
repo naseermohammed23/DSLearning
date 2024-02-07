@@ -30,6 +30,10 @@ public class RebuildBinaryTree {
         return rebuildBTHelper(inList, 0, inList.size()-1, preList, 0, preList.size()-1);
     }
 
+    public static TreeNode rebuildBT(int[] preList, int[] inList) {
+
+        return rebuildBTHelper(preList, 0, preList.length-1, inList, 0, inList.length-1);
+    }
 
     /**
      * Private helper method to rebuild the BT. 
@@ -66,6 +70,31 @@ public class RebuildBinaryTree {
         return node;
     }
 
+    private static TreeNode rebuildBTHelper(int[] preList, int preStart, int preEnd, int[] inList, int inStart, int inEnd) {
+        
+
+        if (inStart > inEnd) return null;
+
+        int rootValue = preList[preStart];
+        int rootIdx = 0;
+        
+        for (int i = inStart; i <= inEnd; i++) {
+            if (inList[i] == rootValue) {
+                rootIdx = i;
+                break;
+            }
+        }        
+
+        int len = rootIdx - inStart;
+        
+        TreeNode node = new TreeNode(rootValue);
+        node.left = rebuildBTHelper(preList, preStart + 1, preStart+len, inList, inStart, rootIdx-1);
+        node.right = rebuildBTHelper(preList, preStart+len+1, preEnd, inList, rootIdx+1, inEnd);
+        
+
+        return node;
+    }
+
     public static void main(String[] args) {
         TreeNode treeNode = TreeSample.getBinaryTree();
 
@@ -80,5 +109,11 @@ public class RebuildBinaryTree {
         System.out.println();
 
         TreeUtil.printLevelOrderSeparateLineWithCount(node);
+
+        TreeNode root = rebuildBT(new int[]{3,9,20,15,7}, new int[]{9,3,15,20,7});
+        
+        System.out.println();
+
+        TreeUtil.printLevelOrderSeparateLineWithCount(root);
     }    
 }

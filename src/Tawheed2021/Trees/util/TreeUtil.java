@@ -321,4 +321,12 @@ public class TreeUtil {
 
         return 1 + size(node.left) + size(node.right);
     }
+
+    public static int height(TreeNode node) {
+        if (node == null) {
+            return 0; // Height of an empty tree is 0
+        }
+
+        return 1 + Math.max(height(node.left), height(node.right));
+    }
 }
