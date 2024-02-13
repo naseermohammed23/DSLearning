@@ -322,6 +322,7 @@ public class TreeUtil {
         return 1 + size(node.left) + size(node.right);
     }
 
+    // max depth of the Binary Tree
     public static int height(TreeNode node) {
         if (node == null) {
             return 0; // Height of an empty tree is 0
