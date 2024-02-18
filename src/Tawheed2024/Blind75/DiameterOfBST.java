@@ -1,6 +1,7 @@
-package Trees;
+package Tawheed2024.Blind75;
 
 import Trees.util.TreeNode;
+import Trees.util.TreeUtil;
 
 /**
  * Tawheed TIPS Summer 2021
@@ -15,9 +16,10 @@ public class DiameterOfBST {
     
     
     public static void main(String[] args) {
-        //findDiameterOfBST1();       
-       // findDiameterOfBST2();   
+        findDiameterOfBST1();       
+       findDiameterOfBST2();   
         findDiameterOfBST3();   
+        findDiameterOfBST4();
     }
 
 
@@ -46,7 +48,9 @@ public class DiameterOfBST {
         node4.left = node5;
         node4.right = node6;
 
-        System.out.println("Diameter of BST " + (findDiameterHelper(root, 0)));
+        int[] diameter = new int[1];
+        findDiameterHelper(root, diameter);
+        System.out.println("Diameter of BST " + diameter[0]);
 
     }
 
@@ -70,7 +74,9 @@ public class DiameterOfBST {
         node1.left = node3;
         node1.right = node4;
 
-        System.out.println("Diameter of BST " + (findDiameterHelper(root, 0)));
+        int[] diameter = new int[1];
+        findDiameterHelper(root, diameter);
+        System.out.println("Diameter of BST " + diameter[0]);
 
     }
 
@@ -91,18 +97,37 @@ public class DiameterOfBST {
            13                10
           /
          14
+         [1,2,3,4,5,null,null,null,null,6,7,11,null,null,8,12,null,null,9,13,null,null,10,14,null]
     **/
     static void findDiameterOfBST3() {
-        TreeNode root = new TreeNode(1);
-        TreeNode node1 = new TreeNode(2);
-        
-        root.left = node1;
-        root.right = null;
+        TreeNode root = TreeUtil.buildTree(new Integer[]{1,2,3,4,5,null,null,6,7,11,null,null,8,12,null,null,9,13,null,null,10,14,null});
 
-        System.out.println("Diameter of BST " + (findDiameterHelper(root, 0)));
+        int[] diameter = new int[1];
+        findDiameterHelper(root, diameter);
+        System.out.println("Diameter of BST " + diameter[0]);
 
     }
 
+    // [2,1,4,3,null,5]
+    static void findDiameterOfBST4() {
+        TreeNode root = new TreeNode(2);
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node2 = new TreeNode(4);
+        TreeNode node3 = new TreeNode(3);
+        TreeNode node4 = null;
+        TreeNode node5 = new TreeNode(5);
+        
+        root.left = node1;
+        root.right = node2;
+        node1.left = node3;
+        node1.right = node4;
+        node2.left = node5;
+
+        int[] diameter = new int[1];
+        findDiameterHelper(root, diameter);
+        System.out.println("Diameter of BST " + diameter[0]);
+
+    }
 
     /**
      * Helper method to determine the diameter of the given BST.
@@ -110,7 +135,7 @@ public class DiameterOfBST {
      * @param result
      * @return
      */
-    static int findDiameterHelper(TreeNode node, int result) {
+    static int findDiameterHelper(TreeNode node, int[] result) {
 
         if (node == null) return 0;
 
@@ -118,7 +143,7 @@ public class DiameterOfBST {
 
         int right = findDiameterHelper(node.right, result);
 
-        result = Math.max(result, left + right);
+        result[0] = Math.max(result[0], left + right);
 
         return 1 + Math.max(left , right);
 
