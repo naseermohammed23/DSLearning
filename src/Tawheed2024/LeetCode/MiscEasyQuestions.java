@@ -1,6 +1,7 @@
 package Tawheed2024.LeetCode;
 
 import java.util.HashMap;
+import java.util.Stack;
 
 public class MiscEasyQuestions {
  
@@ -9,7 +10,8 @@ public class MiscEasyQuestions {
         //int k = 2;
         //System.out.println(getLucky(s, k));    
 
-        System.out.println(countEven(1000));
+        //System.out.println(countEven(1000));
+        System.out.println(evalRPN(new String[]{"4","13","5","/","+"}));
     }
 
     //1945. Sum of Digits of String After Convert
@@ -121,7 +123,55 @@ public class MiscEasyQuestions {
         return sum;
     }
 
-    
 
+    //
+    public String longestCommonPrefix(String[] strs) {
+        
+        String prefix = "";
+        int i=0;
+        boolean condition = true;
+        while(condition) {
+           char temp = strs[0].charAt(i);
+           for (int j=1;i<strs.length;j++) {
+               if (temp != strs[j].charAt(i)) {
+                   condition = false;
+                   break;
+               }
+           }
+           prefix = prefix + strs[0].charAt(i);     
+           i++;     
+
+        }
+
+        return prefix;
+
+    }
+
+    //https://leetcode.com/problems/evaluate-reverse-polish-notation/submissions/1183620177
+    public static int evalRPN(String[] tokens) {
+        if (tokens == null || tokens.length == 0) return 0;
+
+        Stack<Integer> stack = new Stack<>();
+        int temp = 0;
+
+        for (String token : tokens) {
+            if (token.equals("+")) {
+                stack.push(stack.pop()+stack.pop());
+            } else if (token.equals("-")) {
+                temp = stack.pop();
+                stack.push(stack.pop()-temp);
+            } else if (token.equals("*")) {
+                stack.push(stack.pop()*stack.pop());
+            } else if (token.equals("/")) {
+                temp = stack.pop();
+                stack.push(stack.pop()/temp);
+            } else {
+                stack.push(Integer.parseInt(token));
+            }
+        }
+
+        return stack.pop();
+
+    }
 
 }
